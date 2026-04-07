@@ -15,10 +15,10 @@ jobs:
         uses: actions/checkout@v4
       - name: build image
         run: |
-          docker build ./backend/ -t wrqng/notes-app-frontend:${{ github.sha }}
-          docker build ./frontend/ -t wrqng/devops-qr-code-frontend:${{ github.sha }}
+          docker build ./backend/ -t wrqng/notes-app-backend:${{ github.sha }}
+          docker build ./frontend/ -t wrqng/notes-app-frontend:${{ github.sha }}
       - name: push image to docker hub
         run: |
           docker login -u wrqng -p ${{ secrets.DOCKER_HUB_TOKEN }}
+          docker push wrqng/notes-app-backend:${{ github.sha }}
           docker push wrqng/notes-app-frontend:${{ github.sha }}
-          docker push wrqng/devops-qr-code-frontend:${{ github.sha }}
