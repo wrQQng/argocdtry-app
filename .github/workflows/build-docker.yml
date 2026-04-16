@@ -27,8 +27,8 @@ jobs:
       - name: Checkout infra-repo and update tag
         run: |
           git clone https://x-access-token:${{ secrets.INFRA_REPO_TOKEN }}@github.com/wrQQng/argocdtry.git
-          cd infra-repo
-          sed -i 's|tag: .*|tag: "${{ github.sha }}"|' my-chart/values.yaml
+          cd argocdtry
+          yq e '.backend.tag = "${{ github.sha }}"' -i my-chart/values.yaml
           git config user.email "cd@wrqng.com"
           git config user.name "CD Bot"
           git add my-chart/values.yaml
