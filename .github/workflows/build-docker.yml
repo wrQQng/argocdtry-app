@@ -22,3 +22,15 @@ jobs:
           docker login -u wrqng -p ${{ secrets.DOCKER_HUB_TOKEN }}
           docker push wrqng/notes-app-backend:${{ github.sha }}
           docker push wrqng/notes-app-frontend:${{ github.sha }}
+
+          
+      - name: Checkout infra-repo and update tag
+        run: |
+          git clone https://x-access-token:${{ secrets.INFRA_REPO_TOKEN }}@github.com:wrQQng/argocdtry.git
+          cd infra-repo
+          sed -i 's|tag: .*|tag: "${{ github.sha }}"|' my-chart/values.yaml
+          git config user.email "cd@wrqng.com"
+          git config user.name "CD Bot"
+          git add helm/myapp/values.yaml
+          git commit -m "chore: update backend image tag to ${{ github.sha }}"
+          git push
