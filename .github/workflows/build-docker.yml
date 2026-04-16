@@ -33,4 +33,5 @@ jobs:
           git config user.name "CD Bot"
           git add my-chart/values.yaml
           git commit -m "chore: update backend image tag to ${{ github.sha }}"
+          git remote set-url origin https://x-access-token:${{ secrets.INFRA_REPO_TOKEN }}@github.com/wrQQng/argocdtry.git
           git push
