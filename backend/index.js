@@ -39,6 +39,8 @@ async function initDB() {
   }
 }
 
+// Trigger for argocd
+
 // GET all todos
 app.get('/api/todos', async (req, res) => {
   try {
