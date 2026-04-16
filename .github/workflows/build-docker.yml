@@ -31,6 +31,6 @@ jobs:
           sed -i 's|tag: .*|tag: "${{ github.sha }}"|' my-chart/values.yaml
           git config user.email "cd@wrqng.com"
           git config user.name "CD Bot"
-          git add helm/myapp/values.yaml
+          git add my-chart/values.yaml
           git commit -m "chore: update backend image tag to ${{ github.sha }}"
           git push
